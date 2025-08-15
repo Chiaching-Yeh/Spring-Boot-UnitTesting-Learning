@@ -1,0 +1,31 @@
+server:
+  port: 8082
+  servlet:
+    context-parameters:
+      defaultHtmlEscape: true
+    session:
+      timeout: 40m
+      cookie:
+        http-only: true
+      tracking-modes: cookie
+  forward-headers-strategy: NATIVE
+
+spring:
+  application:
+    name: self-demo
+
+  datasource:
+    name: master
+    driver-class-name: org.postgresql.Driver
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 32
+      connection-timeout: 20000
+      leak-detection-threshold: 30000
+
+  flyway:
+    enabled: false
+    locations: classpath:db/migration
+    baseline-on-migrate: true
